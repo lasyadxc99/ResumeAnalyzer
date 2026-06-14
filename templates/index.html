@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATS Resume Analyzer</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .box { margin-top: 20px; padding: 15px; border: 1px solid #ddd; }
+        .score { font-size: 30px; color: green; }
+    </style>
+</head>
+<body>
+
+<h1>ATS Resume Analyzer</h1>
+
+<form action="/analyze" method="POST" enctype="multipart/form-data">
+
+    <p>Upload Resume</p>
+    <input type="file" name="resume" required>
+
+    <p>Job Description</p>
+    <textarea name="job_description" rows="10" cols="80" required></textarea>
+
+    <br><br>
+    <button type="submit">Analyze</button>
+</form>
+
+{% if score is not none %}
+
+<div class="box">
+    <h2 class="score">ATS Score: {{ score }}%</h2>
+
+    <h3>Matched Skills</h3>
+    <ul>
+        {% for i in matched %}
+        <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Missing Skills</h3>
+    <ul>
+        {% for i in missing %}
+        <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>AI Feedback</h3>
+    <p>{{ ai_result }}</p>
+</div>
+
+{% endif %}
+
+</body>
+</html>
