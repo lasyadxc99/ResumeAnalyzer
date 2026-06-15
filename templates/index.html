@@ -1,53 +1,345 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>ATS Resume Analyzer</title>
+
+    <title>ResumeAnalyzer AI | ATS Resume Checker</title>
+
+    <!-- ==================================================
+         APPLICATION STYLING
+         --------------------------------------------------
+         Controls layout, colors, cards, responsiveness,
+         score display and overall user experience.
+         ================================================== -->
+    <style>
+
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+
+        /* Main application container */
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Main page heading */
+        h1 {
+            text-align: center;
+            color: #1f3c88;
+            margin-bottom: 10px;
+        }
+
+        /* Description below heading */
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Form labels */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+
+        /* File upload and textarea styling */
+        input[type="file"],
+        textarea {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Analyze button */
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 14px;
+            background: #1f3c88;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #162d66;
+        }
+
+        /* Results section */
+        .results {
+            margin-top: 35px;
+        }
+
+        /* ATS Score Card */
+        .score-card {
+            background: linear-gradient(135deg, #1f3c88, #4b79ff);
+            color: white;
+            padding: 25px;
+            border-radius: 14px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Large ATS score number */
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        /* Progress bar background */
+        .progress-bar {
+            background: #dce3f0;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 18px;
+            margin-top: 15px;
+        }
+
+        /* Progress bar fill based on ATS score */
+        .progress-fill {
+            background: #28c76f;
+            height: 100%;
+            width: {{ score if score is not none else 0 }}%;
+        }
+
+        /* Layout for matched and missing skills */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        /* Reusable card design */
+        .card {
+            background: #f9fbff;
+            padding: 22px;
+            border-radius: 12px;
+            border: 1px solid #e1e7f0;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #1f3c88;
+        }
+
+        /* Skill badge styling */
+        .skill {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        /* Matched skill badge */
+        .matched {
+            background: #e6f8ee;
+            color: #16834a;
+        }
+
+        /* Missing skill badge */
+        .missing {
+            background: #fdeaea;
+            color: #c0392b;
+        }
+
+        /* Recommendation section */
+        .recommendations {
+            margin-top: 25px;
+            background: #fff8e6;
+            padding: 22px;
+            border-radius: 12px;
+            border: 1px solid #f1d48a;
+        }
+
+        .recommendations h3 {
+            margin-top: 0;
+            color: #9a6b00;
+        }
+
+        .recommendations li {
+            margin-bottom: 10px;
+        }
+
+        /* Mobile responsive layout */
+        @media (max-width: 700px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-<h1>ATS Resume Analyzer</h1>
+    <!-- ==================================================
+         MAIN APPLICATION CONTAINER
+         ================================================== -->
+    <div class="container">
 
-<form action="/analyze" method="POST" enctype="multipart/form-data">
+        <!-- Application Title -->
+        <h1>ATS Resume Analyzer</h1>
 
-    <p>Upload Resume</p>
-    <input type="file" name="resume" required>
+        <!-- Application Description -->
+        <p class="subtitle">
+            Upload your resume and compare it against a job description
+            to evaluate ATS compatibility and identify skill gaps.
+        </p>
 
-    <p>Job Description</p>
-    <textarea name="job_description" rows="10" cols="80" required></textarea>
+        <!-- ==================================================
+             RESUME ANALYSIS FORM
+             ================================================== -->
+        <form action="/analyze" method="POST" enctype="multipart/form-data">
 
-    <br><br>
-    <button type="submit">Analyze</button>
+            <!-- Resume Upload -->
+            <label>Upload Resume (PDF)</label>
 
-</form>
+            <input
+                type="file"
+                name="resume"
+                accept=".pdf"
+                required>
 
-{% if score is not none %}
+            <!-- Job Description Input -->
+            <label>Job Description</label>
 
-<hr>
+            <textarea
+                name="job_description"
+                rows="10"
+                placeholder="Paste the target job description here..."
+                required></textarea>
 
-<h2>ATS Score: {{ score }}%</h2>
+            <!-- Submit Button -->
+            <button type="submit">
+                Analyze Resume
+            </button>
 
-<h3>Matched Skills</h3>
-<ul>
-    {% for i in matched %}
-    <li>{{ i }}</li>
-    {% endfor %}
-</ul>
+        </form>
 
-<h3>Missing Skills</h3>
-<ul>
-    {% for i in missing %}
-    <li>{{ i }}</li>
-    {% endfor %}
-</ul>
+        <!-- ==================================================
+             RESULTS SECTION
+             Only displays after analysis is completed
+             ================================================== -->
+        {% if score is not none %}
 
-<h3>Recommendations</h3>
-<ul>
-    {% for i in recommendations %}
-    <li>{{ i }}</li>
-    {% endfor %}
-</ul>
+        <div class="results">
 
-{% endif %}
+            <!-- ATS Score Card -->
+            <div class="score-card">
+
+                <h2>ATS Match Score</h2>
+
+                <div class="score">
+                    {{ score }}%
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+            </div>
+
+            <!-- ==================================================
+                 MATCHED AND MISSING SKILLS
+                 ================================================== -->
+            <div class="grid">
+
+                <!-- Matched Skills -->
+                <div class="card">
+
+                    <h3>Matched Skills</h3>
+
+                    {% if matched %}
+
+                        {% for i in matched %}
+                            <span class="skill matched">
+                                ✓ {{ i }}
+                            </span>
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>No matched skills found.</p>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Missing Skills -->
+                <div class="card">
+
+                    <h3>Missing Skills</h3>
+
+                    {% if missing %}
+
+                        {% for i in missing %}
+                            <span class="skill missing">
+                                ✕ {{ i }}
+                            </span>
+                        {% endfor %}
+
+                    {% else %}
+
+                        <p>No missing skills found.</p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <!-- ==================================================
+                 RECOMMENDATION SECTION
+                 ================================================== -->
+            <div class="recommendations">
+
+                <h3>Recommendations</h3>
+
+                <ul>
+
+                    {% for i in recommendations %}
+                        <li>{{ i }}</li>
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
 
 </body>
+
 </html>
