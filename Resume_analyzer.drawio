@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="snnsP_cf_lTWqRdtI64X">
+    <mxGraphModel dx="964" dy="633" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-64" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="User Upload Resume + Job Description" vertex="1">
+          <mxGeometry height="70" width="180" x="390" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-65" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Frontend index.html" vertex="1">
+          <mxGeometry height="60" width="180" x="390" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-66" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Flask Backend app.py" vertex="1">
+          <mxGeometry height="60" width="180" x="390" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-67" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="PDF Parser PyPDF2" vertex="1">
+          <mxGeometry height="60" width="170" x="90" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-68" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Text Cleaning Regex" vertex="1">
+          <mxGeometry height="60" width="170" x="300" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-69" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Skill Database 500+ Skills" vertex="1">
+          <mxGeometry height="60" width="170" x="520" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-70" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Skill Extraction Engine" vertex="1">
+          <mxGeometry height="60" width="180" x="300" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-71" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="ATS Scoring Engine" vertex="1">
+          <mxGeometry height="60" width="180" x="300" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-72" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Recommendation Engine" vertex="1">
+          <mxGeometry height="60" width="180" x="300" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-73" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Results Dashboard ATS Score Matched/Missing Skills" vertex="1">
+          <mxGeometry height="80" width="250" x="300" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-74" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-64" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-75" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-65" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-76" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-66" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-77" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-66" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-68">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-78" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-66" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-79" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-67" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-80" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-68" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-81" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-69" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-82" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-70" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-83" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-71" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rowEfWDhLw_OpaAP9EAB-84" edge="1" parent="1" source="rowEfWDhLw_OpaAP9EAB-72" style="endArrow=block;html=1;" target="rowEfWDhLw_OpaAP9EAB-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
